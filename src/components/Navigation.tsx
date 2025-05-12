@@ -65,7 +65,7 @@ export const Navigation = () => {
           className="flex items-center gap-2 text-2xl font-bold font-[Orbitron]"
         >
           <Cpu className="w-8 h-8 text-[#00FFBB]" />
-          <span className="text-gradient">DEV<span className="text-white">ZERO</span></span>
+          <span className="text-gradient">CHIROMO.<span className="text-white">DEV</span></span>
         </button>
 
         {/* Desktop navigation */}

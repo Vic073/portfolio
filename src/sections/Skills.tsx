@@ -13,28 +13,29 @@ const skills: Skill[] = [
   {
     category: "Frontend",
     items: [
-      { name: "React", level: 95 },
-      { name: "TypeScript", level: 90 },
-      { name: "CSS/SASS", level: 85 },
-      { name: "Next.js", level: 80 }
+      { name: "React", level: 50 },
+      { name: "TypeScript", level: 50 },
+      { name: "CSS/SASS", level: 60 },
+
     ]
   },
   {
     category: "Backend",
     items: [
-      { name: "Node.js", level: 85 },
-      { name: "Express", level: 80 },
-      { name: "MongoDB", level: 75 },
-      { name: "GraphQL", level: 70 }
+      { name: "Node.js", level: 35 },
+      { name: "Express", level: 30 },
+      { name: "Laravel", level: 30},
+      { name: "MongoDB", level: 35 },
+      { name: "REST", level: 30 }
     ]
   },
   {
     category: "Tools & Others",
     items: [
-      { name: "Git/GitHub", level: 90 },
-      { name: "Docker", level: 70 },
-      { name: "AWS", level: 65 },
-      { name: "Figma", level: 85 }
+      { name: "Git/GitHub", level: 80 },
+      { name: "Docker", level: 20 },
+      { name: "AWS", level: 20 },
+      
     ]
   }
 ];
@@ -127,9 +128,7 @@ export const Skills = () => {
             
             <div className="space-y-4">
               {[
-                "AWS Certified Developer Associate",
-                "Google UX Design Professional Certificate",
-                "Advanced React & GraphQL - Frontend Masters",
+                "Laravel Certified Developer",
                 "MongoDB Certified Developer"
               ].map((cert, index) => (
                 <div key={index} className="flex items-center gap-3">
@@ -147,7 +146,7 @@ export const Skills = () => {
             
             <div className="flex flex-wrap gap-3">
               {[
-                "UI/UX Design", "Performance Optimization", "Responsive Design",
+                "Performance Optimization", "Responsive Design",
                 "PWAs", "Serverless", "CI/CD", "Microservices", "JAMstack",
                 "Web Accessibility", "SEO", "Web3", "Testing", "Animations"
               ].map((skill, index) => (

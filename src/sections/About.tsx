@@ -46,7 +46,7 @@ export const About = () => {
               <div className="glassmorphism p-1">
                 <div className="aspect-square rounded-lg overflow-hidden">
                   <img 
-                    src="https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" 
+                    src="img.jpg" 
                     alt="Profile" 
                     className="w-full h-full object-cover"
                   />
@@ -56,12 +56,12 @@ export const About = () => {
           </div>
           
           <div>
-            <h3 className="text-3xl font-bold mb-4 text-gradient font-[Orbitron] reveal">John Doe</h3>
+            <h3 className="text-3xl font-bold mb-4 text-gradient font-[Orbitron] reveal">Victor Chiromo</h3>
             <p className="text-lg text-gray-300 mb-6 leading-relaxed reveal">
-              I'm a passionate full-stack developer and UI designer with over 5 years 
-              of experience creating beautiful, functional digital experiences. My goal 
-              is to build applications that are not only visually stunning but also 
-              intuitive and performant.
+              I am an amauter web developer with a passion for creating dynamic and
+              responsive web applications. With a strong foundation in both front-end
+              and back-end technologies, I thrive on turning complex problems into
+              elegant solutions. 
             </p>
             <p className="text-lg text-gray-300 mb-8 leading-relaxed reveal">
               When I'm not coding, you can find me exploring new technologies, 
@@ -73,15 +73,15 @@ export const About = () => {
             <div className="grid grid-cols-2 gap-4 mb-8">
               <div className="flex items-center gap-3 reveal">
                 <span className="text-[#00FFBB] font-medium">Name:</span>
-                <span className="text-gray-300">John Doe</span>
+                <span className="text-gray-300">Victor Chiromo</span>
               </div>
               <div className="flex items-center gap-3 reveal">
                 <span className="text-[#00FFBB] font-medium">Email:</span>
-                <span className="text-gray-300">john@example.com</span>
+                <span className="text-gray-300">chilomovic@gmail.com</span>
               </div>
               <div className="flex items-center gap-3 reveal">
                 <span className="text-[#00FFBB] font-medium">From:</span>
-                <span className="text-gray-300">San Francisco, CA</span>
+                <span className="text-gray-300">Zomba, Malawi</span>
               </div>
               <div className="flex items-center gap-3 reveal">
                 <span className="text-[#00FFBB] font-medium">Freelance:</span>
@@ -92,7 +92,6 @@ export const About = () => {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {[
                 { icon: <Code />, label: "Development" },
-                { icon: <Layout />, label: "UI Design" },
                 { icon: <Database />, label: "Backend" },
                 { icon: <Users />, label: "Mentoring" }
               ].map((item, index) => (

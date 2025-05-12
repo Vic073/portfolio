@@ -13,7 +13,7 @@ export const Hero = () => {
     
     const animateText = () => {
       let iteration = 0;
-      const originalText = "JOHN DOE"; // Replace with your name
+      const originalText = "VICTOR CHIROMO"; 
       
       clearInterval(interval as number);
       
@@ -67,7 +67,7 @@ export const Hero = () => {
           </h1>
           
           <h2 className="text-2xl md:text-4xl font-semibold mb-8 text-gray-300">
-            <span className="text-gradient">Full Stack Developer</span> & <span className="text-[#FF2A6D]">UI Designer</span>
+            <span className="text-gradient">Full Stack Developer</span>
           </h2>
           
           <p className="text-gray-400 max-w-2xl mb-10 text-lg leading-relaxed">

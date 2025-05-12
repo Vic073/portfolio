@@ -14,40 +14,32 @@ type Project = {
 const projects: Project[] = [
   {
     id: 1,
-    title: "Crypto Dashboard",
-    description: "A real-time cryptocurrency dashboard with price tracking, portfolio management, and market analysis tools.",
-    image: "https://images.pexels.com/photos/844124/pexels-photo-844124.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    tags: ["React", "TypeScript", "TailwindCSS", "API Integration"],
+    title: "DCE SRC Voting System",
+    description: "A platform where students at DCE can vote for their SRC representatives, featuring real-time results and secure authentication.",
+    image: "src.png",
+    tags: ["HTML", "JavaScript", "BootstrapCSS", "PHP", "API Integration"],
     github: "#",
     live: "#"
   },
   {
     id: 2,
-    title: "AI Image Generator",
-    description: "Web application that uses AI to generate unique images based on text prompts provided by users.",
-    image: "https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    tags: ["Next.js", "OpenAI", "Framer Motion", "Node.js"],
+    title: "EDUSHARE",
+    description: "A collaborative platform for students at DCE to share and access educational resources, including notes, videos, and articles.",
+    image: "edu.png",
+    tags: ["React", "Framer Motion", "TailwindCSS", "Laravel", "API Integration"],
     github: "#",
     live: "#"
   },
   {
     id: 3,
-    title: "E-Learning Platform",
-    description: "Comprehensive learning management system with courses, quizzes, progress tracking, and certificates.",
-    image: "https://images.pexels.com/photos/5905885/pexels-photo-5905885.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    tags: ["React", "Firebase", "Redux", "SCSS"],
+    title: "Daily Quotes",
+    description: "A simple web app that fetches and displays a new motivational quote every day, using an external API.",
+    image: "quote.png",
+    tags: ["React", "TypeScript", "Framer Motion", "TailwindCSS", "API Integration"],
     github: "#",
     live: "#"
   },
-  {
-    id: 4,
-    title: "Smart Home Dashboard",
-    description: "IoT dashboard for controlling and monitoring smart home devices with data visualization.",
-    image: "https://images.pexels.com/photos/4219654/pexels-photo-4219654.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    tags: ["Vue.js", "WebSockets", "D3.js", "Express"],
-    github: "#",
-    live: "#"
-  }
+  
 ];
 
 export const Projects = () => {
