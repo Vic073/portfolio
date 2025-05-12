@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Code, Cpu } from 'lucide-react';
+import { Menu, X, Cpu } from 'lucide-react';
 
 export const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -12,11 +13,43 @@ export const Navigation = () => {
       } else {
         setScrolled(false);
       }
+
+      // Calculate which section is currently in view
+      const sections = ['home', 'about', 'projects', 'skills', 'contact'];
+      const current = sections.find(section => {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          return rect.top <= 100 && rect.bottom >= 100;
+        }
+        return false;
+      });
+
+      if (current) {
+        setActiveSection(current);
+      }
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const handleNavClick = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const offset = 80; // Height of the fixed navbar
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+    setIsOpen(false);
+  };
+
+  const navItems = ['Home', 'About', 'Projects', 'Skills', 'Contact'];
 
   return (
     <header 
@@ -27,25 +60,31 @@ export const Navigation = () => {
       }`}
     >
       <div className="container mx-auto px-4 flex items-center justify-between">
-        <a 
-          href="#hero" 
+        <button 
+          onClick={() => handleNavClick('home')}
           className="flex items-center gap-2 text-2xl font-bold font-[Orbitron]"
         >
           <Cpu className="w-8 h-8 text-[#00FFBB]" />
           <span className="text-gradient">DEV<span className="text-white">ZERO</span></span>
-        </a>
+        </button>
 
         {/* Desktop navigation */}
         <nav className="hidden md:flex items-center gap-8">
-          {['Home', 'About', 'Projects', 'Skills', 'Contact'].map((item) => (
-            <a
+          {navItems.map((item) => (
+            <button
               key={item}
-              href={`#${item.toLowerCase()}`}
-              className="text-white hover:text-[#00FFBB] transition-colors relative group text-lg"
+              onClick={() => handleNavClick(item.toLowerCase())}
+              className={`text-lg transition-all duration-300 relative group ${
+                activeSection === item.toLowerCase()
+                  ? 'text-[#00FFBB]'
+                  : 'text-white hover:text-[#00FFBB]'
+              }`}
             >
               {item}
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#00FFBB] transition-all duration-300 group-hover:w-full"></span>
-            </a>
+              <span className={`absolute -bottom-1 left-0 h-0.5 bg-[#00FFBB] transition-all duration-300 ${
+                activeSection === item.toLowerCase() ? 'w-full' : 'w-0 group-hover:w-full'
+              }`}></span>
+            </button>
           ))}
         </nav>
 
@@ -71,15 +110,18 @@ export const Navigation = () => {
             </button>
           </div>
           <div className="mt-8 flex flex-col gap-6">
-            {['Home', 'About', 'Projects', 'Skills', 'Contact'].map((item) => (
-              <a
+            {navItems.map((item) => (
+              <button
                 key={item}
-                href={`#${item.toLowerCase()}`}
-                className="text-white hover:text-[#00FFBB] transition-colors text-xl"
-                onClick={() => setIsOpen(false)}
+                onClick={() => handleNavClick(item.toLowerCase())}
+                className={`text-xl transition-colors ${
+                  activeSection === item.toLowerCase()
+                    ? 'text-[#00FFBB]'
+                    : 'text-white hover:text-[#00FFBB]'
+                }`}
               >
                 {item}
-              </a>
+              </button>
             ))}
           </div>
         </div>
