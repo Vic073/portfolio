@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { ArrowDown, Code, Download } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 export const Hero = () => {
   const titleRef = useRef<HTMLHeadingElement>(null);
@@ -52,52 +53,96 @@ export const Hero = () => {
       </div>
       
       <div className="container mx-auto px-4 z-10">
-        <div className="flex flex-col items-center text-center">
-          <div className="mb-6">
+        <motion.div 
+          className="flex flex-col items-center text-center"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <motion.div 
+            className="mb-6"
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+          >
             <Code className="w-16 h-16 text-[#00FFBB] animate-pulse" />
-          </div>
+          </motion.div>
           
-          <p className="text-xl md:text-2xl text-[#00FFBB] mb-4 font-medium">Hello, I am</p>
+          <motion.p 
+            className="text-xl md:text-2xl text-[#00FFBB] mb-4 font-medium"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+          >
+            Hello, I am
+          </motion.p>
           
-          <h1 
+          <motion.h1 
             ref={titleRef}
             className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 font-[Orbitron] tracking-wider"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6 }}
           >
-            JOHN DOE
-          </h1>
+            VICTOR CHIROMO
+          </motion.h1>
           
-          <h2 className="text-2xl md:text-4xl font-semibold mb-8 text-gray-300">
+          <motion.h2 
+            className="text-2xl md:text-4xl font-semibold mb-8 text-gray-300"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8 }}
+          >
             <span className="text-gradient">Full Stack Developer</span>
-          </h2>
+          </motion.h2>
           
-          <p className="text-gray-400 max-w-2xl mb-10 text-lg leading-relaxed">
+          <motion.p 
+            className="text-gray-400 max-w-2xl mb-10 text-lg leading-relaxed"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1 }}
+          >
             Crafting exceptional digital experiences with cutting-edge technologies.
             Specializing in creating innovative, responsive, and user-friendly applications.
-          </p>
+          </motion.p>
           
-          <div className="flex flex-col sm:flex-row gap-4">
-            <a 
+          <motion.div 
+            className="flex flex-col sm:flex-row gap-4"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.2 }}
+          >
+            <motion.a 
               href="#projects" 
               className="px-8 py-3 bg-[#FF2A6D] hover:bg-[#FF2A6D]/80 text-white rounded-full font-medium flex items-center justify-center gap-2 transition-all neon-border"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
               View My Work
               <ArrowDown className="w-4 h-4" />
-            </a>
+            </motion.a>
             
-            <a 
+            <motion.a 
               href="#" 
               className="px-8 py-3 bg-transparent border border-[#00FFBB] hover:bg-[#00FFBB]/10 text-white rounded-full font-medium flex items-center justify-center gap-2 transition-all neon-border"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
               Download CV
               <Download className="w-4 h-4" />
-            </a>
-          </div>
-        </div>
+            </motion.a>
+          </motion.div>
+        </motion.div>
       </div>
       
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
-        <ArrowDown className="w-6 h-6 text-[#00FFBB]" />
-      </div>
+      <motion.div 
+        className="absolute bottom-10 left-1/2 -translate-x-1/2"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5, duration: 1 }}
+      >
+        <ArrowDown className="w-6 h-6 text-[#00FFBB] animate-bounce" />
+      </motion.div>
     </section>
   );
 };

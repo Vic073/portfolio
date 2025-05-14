@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { ExternalLink, Github, Code } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 type Project = {
   id: number;
@@ -39,64 +40,70 @@ const projects: Project[] = [
     github: "#",
     live: "#"
   },
-  
 ];
 
-export const Projects = () => {
-  const sectionRef = useRef<HTMLElement>(null);
-  const [activeProject, setActiveProject] = useState<number | null>(null);
-  
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const elements = sectionRef.current?.querySelectorAll('.reveal');
-            elements?.forEach((el, index) => {
-              setTimeout(() => {
-                el.classList.add('active');
-              }, index * 200);
-            });
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-    
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2
     }
-    
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
-  }, []);
+  }
+};
+
+const itemVariants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.5
+    }
+  }
+};
+
+export const Projects = () => {
+  const [activeProject, setActiveProject] = useState<number | null>(null);
 
   return (
-    <section id="projects" ref={sectionRef} className="py-20 relative">
+    <section id="projects" className="py-20 relative">
       <div className="absolute inset-0 overflow-hidden">
         <div className="skew-background opacity-20 transform -skewY(10deg)"></div>
       </div>
       
       <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 font-[Orbitron] reveal">My Projects</h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-[#00FFBB] to-[#FF2A6D] mx-auto reveal"></div>
-          <p className="max-w-2xl mx-auto mt-6 text-gray-400 reveal">
+        <motion.div 
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 font-[Orbitron]">My Projects</h2>
+          <div className="w-24 h-1 bg-gradient-to-r from-[#00FFBB] to-[#FF2A6D] mx-auto"></div>
+          <p className="max-w-2xl mx-auto mt-6 text-gray-400">
             Explore some of my recent work. These projects showcase my skills in web development, 
             UI/UX design, and problem-solving.
           </p>
-        </div>
+        </motion.div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {projects.map((project, index) => (
-            <div 
-              key={project.id} 
-              className="glassmorphism overflow-hidden reveal perspective-card"
+        <motion.div 
+          className="grid grid-cols-1 md:grid-cols-2 gap-8"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
+          {projects.map((project) => (
+            <motion.div 
+              key={project.id}
+              variants={itemVariants}
+              className="glassmorphism overflow-hidden perspective-card"
               onMouseEnter={() => setActiveProject(project.id)}
               onMouseLeave={() => setActiveProject(null)}
+              whileHover={{ scale: 1.02 }}
+              transition={{ duration: 0.3 }}
             >
               <div className="perspective-card-inner h-full">
                 <div className="relative group h-full">
@@ -108,13 +115,15 @@ export const Projects = () => {
                     />
                   </div>
                   
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent flex flex-col justify-end p-6">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent flex flex-col justify-end p-4 md:p-6">
                     <div className="flex items-center gap-2 mb-2">
                       <Code className="w-5 h-5 text-[#00FFBB]" />
-                      <h3 className="text-2xl font-bold font-[Orbitron]">{project.title}</h3>
+                      <h3 className="text-xl md:text-2xl font-bold font-[Orbitron]">{project.title}</h3>
                     </div>
                     
-                    <p className="text-gray-300 mb-4">{project.description}</p>
+                    <p className="text-gray-300 mb-4 text-sm md:text-base line-clamp-3 md:line-clamp-none">
+                      {project.description}
+                    </p>
                     
                     <div className="flex flex-wrap gap-2 mb-4">
                       {project.tags.map((tag, i) => (
@@ -128,37 +137,49 @@ export const Projects = () => {
                     </div>
                     
                     <div className="flex gap-4">
-                      <a 
+                      <motion.a 
                         href={project.github} 
                         className="p-2 glassmorphism text-white hover:text-[#00FFBB] transition-colors"
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.95 }}
                         aria-label="View GitHub repository"
                       >
                         <Github className="w-5 h-5" />
-                      </a>
-                      <a 
+                      </motion.a>
+                      <motion.a 
                         href={project.live} 
                         className="p-2 glassmorphism text-white hover:text-[#00FFBB] transition-colors"
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.95 }}
                         aria-label="View live project"
                       >
                         <ExternalLink className="w-5 h-5" />
-                      </a>
+                      </motion.a>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
         
-        <div className="text-center mt-12 reveal">
-          <a 
+        <motion.div 
+          className="text-center mt-12"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+        >
+          <motion.a 
             href="#" 
             className="px-8 py-3 bg-transparent border border-[#00FFBB] hover:bg-[#00FFBB]/10 text-white rounded-full font-medium inline-flex items-center justify-center gap-2 transition-all neon-border"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
           >
             View All Projects
             <ExternalLink className="w-4 h-4" />
-          </a>
-        </div>
+          </motion.a>
+        </motion.div>
       </div>
     </section>
   );
