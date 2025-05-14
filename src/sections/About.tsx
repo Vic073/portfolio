@@ -98,9 +98,9 @@ export const About = () => {
             >
               {[
                 { label: "Name", value: "Victor Chiromo" },
-                { label: "Email", value: "chilomovic@gmail.com" },
+                { label: "Age", value: "20" },
                 { label: "From", value: "Zomba, Malawi" },
-                { label: "Freelance", value: "Available" }
+                { label: "Work", value: "Available" }
               ].map((item, index) => (
                 <motion.div 
                   key={index}
