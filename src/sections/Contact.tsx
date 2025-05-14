@@ -89,7 +89,7 @@ export const Contact = () => {
               </h3>
               
               <motion.div 
-                className="space-y-6"
+                className="space-y-6 justify-center"
                 variants={containerVariants}
               >
                 {[
