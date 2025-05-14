@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Send, MapPin, Mail, Phone } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { FaGithub, FaLinkedin, FaTwitter, FaInstagram } from 'react-icons/fa';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -30,12 +31,12 @@ export const Contact = () => {
     subject: '',
     message: ''
   });
-  
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormState(prev => ({ ...prev, [name]: value }));
   };
-  
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log('Form submitted:', formState);
@@ -48,14 +49,21 @@ export const Contact = () => {
     });
   };
 
+  const socialLinks = [
+    { href: 'https://github.com/yourusername', icon: <FaGithub /> },
+    { href: 'https://linkedin.com/in/yourusername', icon: <FaLinkedin /> },
+    { href: 'https://twitter.com/yourusername', icon: <FaTwitter /> },
+    { href: 'https://instagram.com/yourusername', icon: <FaInstagram /> },
+  ];
+
   return (
     <section id="contact" className="py-20 relative">
       <div className="absolute inset-0 overflow-hidden">
         <div className="skew-background opacity-30"></div>
       </div>
-      
+
       <div className="container mx-auto px-4 relative z-10">
-        <motion.div 
+        <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -69,16 +77,17 @@ export const Contact = () => {
             Feel free to reach out and I'll get back to you as soon as possible.
           </p>
         </motion.div>
-        
+
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
-          <motion.div 
+          {/* Left Side: Contact Info */}
+          <motion.div
             className="lg:col-span-2 order-2 lg:order-1"
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
           >
-            <motion.div 
+            <motion.div
               className="glassmorphism p-6 h-full"
               variants={itemVariants}
               whileHover={{ scale: 1.02 }}
@@ -87,8 +96,8 @@ export const Contact = () => {
               <h3 className="text-xl font-bold mb-6 text-gradient font-[Orbitron]">
                 Contact Information
               </h3>
-              
-              <motion.div 
+
+              <motion.div
                 className="space-y-6 justify-center"
                 variants={containerVariants}
               >
@@ -97,8 +106,8 @@ export const Contact = () => {
                   { icon: <Mail />, title: "Email", value: "chilomovic@gmail.com" },
                   { icon: <Phone />, title: "Phone", value: "+265 989 27 27 16" }
                 ].map((item, index) => (
-                  <motion.div 
-                    key={index} 
+                  <motion.div
+                    key={index}
                     className="flex items-start gap-4"
                     variants={itemVariants}
                   >
@@ -112,24 +121,26 @@ export const Contact = () => {
                   </motion.div>
                 ))}
               </motion.div>
-              
-              <motion.div 
+
+              <motion.div
                 className="mt-8 pt-8 border-t border-white/10"
                 variants={containerVariants}
               >
                 <h4 className="text-white font-medium mb-4">Follow Me</h4>
                 <div className="flex gap-4">
-                  {['github', 'linkedin', 'twitter', 'instagram'].map((platform, index) => (
-                    <motion.a 
+                  {socialLinks.map((link, index) => (
+                    <motion.a
                       key={index}
-                      href="#" 
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="p-3 glassmorphism text-white hover:text-[#00FFBB] transition-colors"
                       variants={itemVariants}
                       whileHover={{ scale: 1.2 }}
                       whileTap={{ scale: 0.9 }}
                     >
-                      <div className="w-5 h-5 flex items-center justify-center">
-                        <span className="text-xs uppercase">{platform[0]}</span>
+                      <div className="w-5 h-5 flex items-center justify-center text-lg">
+                        {link.icon}
                       </div>
                     </motion.a>
                   ))}
@@ -137,15 +148,16 @@ export const Contact = () => {
               </motion.div>
             </motion.div>
           </motion.div>
-          
-          <motion.div 
+
+          {/* Right Side: Form */}
+          <motion.div
             className="lg:col-span-3 order-1 lg:order-2"
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
           >
-            <motion.div 
+            <motion.div
               className="glassmorphism p-6"
               variants={itemVariants}
               whileHover={{ scale: 1.01 }}
@@ -154,9 +166,9 @@ export const Contact = () => {
               <h3 className="text-xl font-bold mb-6 text-gradient font-[Orbitron]">
                 Send Me A Message
               </h3>
-              
+
               <form onSubmit={handleSubmit}>
-                <motion.div 
+                <motion.div
                   className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6"
                   variants={containerVariants}
                 >
@@ -166,7 +178,7 @@ export const Contact = () => {
                   ].map((field, index) => (
                     <motion.div key={index} variants={itemVariants}>
                       <label htmlFor={field.name} className="block text-white mb-2">{field.label}</label>
-                      <input 
+                      <input
                         type={field.type}
                         id={field.name}
                         name={field.name}
@@ -178,10 +190,10 @@ export const Contact = () => {
                     </motion.div>
                   ))}
                 </motion.div>
-                
+
                 <motion.div className="mb-6" variants={itemVariants}>
                   <label htmlFor="subject" className="block text-white mb-2">Subject</label>
-                  <input 
+                  <input
                     type="text"
                     id="subject"
                     name="subject"
@@ -191,10 +203,10 @@ export const Contact = () => {
                     required
                   />
                 </motion.div>
-                
+
                 <motion.div className="mb-6" variants={itemVariants}>
                   <label htmlFor="message" className="block text-white mb-2">Message</label>
-                  <textarea 
+                  <textarea
                     id="message"
                     name="message"
                     value={formState.message}
@@ -204,8 +216,8 @@ export const Contact = () => {
                     required
                   ></textarea>
                 </motion.div>
-                
-                <motion.button 
+
+                <motion.button
                   type="submit"
                   className="px-8 py-3 bg-[#FF2A6D] hover:bg-[#FF2A6D]/80 text-white rounded-lg font-medium flex items-center justify-center gap-2 transition-all neon-border"
                   whileHover={{ scale: 1.05 }}

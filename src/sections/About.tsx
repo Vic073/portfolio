@@ -100,7 +100,7 @@ export const About = () => {
                 { label: "Name", value: "Victor Chiromo" },
                 { label: "Age", value: "20" },
                 { label: "From", value: "Zomba, Malawi" },
-                { label: "Work", value: "Available" }
+                
               ].map((item, index) => (
                 <motion.div 
                   key={index}
